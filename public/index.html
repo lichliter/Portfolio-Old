@@ -1,0 +1,192 @@
+<html lang="en">
+<head>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/index.css" rel="stylesheet">
+	<link href="css/metro-bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/metro.min.js"></script>
+	<script type="text/javascript" src="js/underscore-min.js"></script>
+	<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.2.min.js"></script>
+</head>
+<body class = "metro">
+	<nav class="navigation-bar fixed-top dark">
+		<nav class="navigation-bar-content">
+			<item class="element">BrianLichliter</item>
+		</nav>
+	</nav>
+	<div class = "container" id = "tileContainer">
+		<div class = "row">
+			<div class = "col-xs-3">
+				<nav class="sidebar">
+				    <ul>
+				    	<li class = "title">Home</li>
+				    	<li class=""><a href="#" onclick="drawAboutMe()">About Me</a></li>
+				    	<li class=""><a target = "_blank" href="https://www.dropbox.com/s/ix5xura97c2lsct/Website.Resume.pdf?dl=0">Resume</a></li>
+				    	<li class=""><a href="mailto:brian.lichliter@gmail.com">Contact</a></li>
+				        <li class="title">Portfolio Filters</li>
+				        <li class="" onclick="allTiles()"><a href="#">All</a></li>
+				        <li class="stick bg-darkCyan"><a href="#" onclick="redrawTiles('intern')">Internship</a></li>
+				        <li class="stick bg-dark"><a href="#" onclick="redrawTiles('development')">Development</a></li>
+				        <li class = "stick bg-darkcobalt"><a onclick="redrawTiles('product')" href="#">Product Design</a></li>
+				        <li class = "stick bg-darkgreen" onclick="redrawTiles('graphic')"><a href="#">Graphic Design</a></li>
+				        <li class = "stick bg-darkmagenta" onclick="redrawTiles('research')"><a href="#">Design Research</a></li>
+				        <li class = "title">Useful Links</li>
+				        <li class = ""><a target = "_blank" href = "https://github.com/BrianLichliter">Github</a></li>
+				        <li class = ""><a target="_blank" href = "http://www.linkedin.com/in/brianlichliter/">LinkedIn</a></li>
+				        <li class = ""><a target = "_blank" href = "http://b-lichliter.tumblr.com/">Blog</a></li>
+				        <li class = ""><a target = "_blank" href = "https://www.flickr.com/photos/93060454@N02/">Flickr</a></li>
+				    </ul>
+				</nav>
+			</div>
+			<div class = "col-xs-9">
+				<div id = "tiles"></div>
+			</div>
+		</div>
+	</div>
+	<script type="foo/bar" id="projectTile">
+		<a data-toggle="modal" data-target="#<%=title.replace(/[\s.]+/g, '')%>">
+			<div class="tile double double-vertical bg-white">
+				<div class="tile-content image">
+					<img src="<%=image%>">
+				</div>
+				<div class="brand <%=color%>">
+					<span class="label fg-white"><%=title%></span>
+				</div>
+			</div>
+		</a>
+		<!-- Modal -->
+		<div class="modal fade" id="<%=title.replace(/[\s.]+/g, '')%>" tabindex="-1" role="dialog" aria-labelledby="<%=title.replace(/[\s.]+/g, '')%>Label" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header <%=color%>">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span>
+							<span class="sr-only">Close</span>
+						</button>
+						<h1 class = "fg-white"><%=title%></h1>
+					</div>
+					<div class="modal-body">
+						<div class = "row">
+							<div class = "col-xs-5">
+								<img src="<%=image%>">
+								<br><br>
+								<center>
+									<a target = "_blank" class = "btn btn-default" href="<%=link%>">
+										<%=linkText%>
+									</a>
+								</center>
+							</div>
+							<div class = "col-xs-7">
+								<%=description%>
+							</div>
+						</div>
+						<br><br>
+					</div>
+					<div class="modal-footer">
+						<center>
+							<%if (imageFull) {%>
+							<h2><%=captionFull%></h2>
+							<br>
+							<img class = "img-responsive" src="<%=imageFull%>">
+							<%}%>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</script>
+
+	<script type="foo/bar" id="aboutMe">
+		<div class = "row">
+			<div id = "about" class = "col-xs-8">
+				<h1>About Me</h1>
+				<p>
+				Hello! My name is Brian Lichliter and I am currently a student at Northwestern Univeristy finishing my Bachelor's of Science in Computer Engineering as well beginning my Master's of Science in Engineering Design and Innovation. My interests lie in the human-centered design of technology. Whether that be working on the design of a cell phone or the user experience of a website, I love it all.
+				<br><br>
+				On the left are links to display the various projects I have worked on over the past few years. Also, feel free to check out my <a href="http://b-lichliter.tumblr.com/" target="_blank">writings</a> on the mobile space and some of my <a href="https://www.flickr.com/photos/93060454@N02/" target="_blank">photography.</a>
+				</p>
+			</div>
+			<div class = "col-xs-4">
+				<center><img id = "profile" src = "img/Brian.jpg"></center>
+			</div>
+		</div>
+	</script>
+
+
+	<script type="text/javascript">
+		Parse.initialize("CowQmjHrJtzCVWm7k9mBkZO6L1uGzGwgC6cahQfJ", 
+			"AJFR1w2yMyy0c1rSUIXXrB4PAPn5nvrp7m5KF3WO");
+		var template = $("#projectTile").html();
+		var us_template = _.template(template);
+		var createCard = function(a) {$("#tiles").append(us_template(a))};
+		drawAboutMe();
+
+		function findDraw (query) {
+			query.descending("date");
+			query.find({
+				success: function(results) {
+					results.forEach(function(result){
+						var projectTileInfo = result.attributes;
+						var projectImage = result.get("image");
+						var image = projectImage.url();
+						projectTileInfo.image = image;
+
+						var projectImageFull = result.get("imageFull");
+						if (projectImageFull) {
+							var imageFull = projectImageFull.url();
+							projectTileInfo.imageFull = imageFull;
+						} else {
+							projectTileInfo.imageFull = 0;
+						}
+						var color;
+						if (projectTileInfo.type == "development") {
+							color = "bg-dark"
+						} else if (projectTileInfo.type == "graphic") {
+							color = "bg-darkgreen"
+						} else if (projectTileInfo.type == "product") {
+							color = "bg-darkcobalt"
+						} else if (projectTileInfo.type == "research") {
+							color = "bg-darkmagenta"
+						} else if (projectTileInfo.type == "intern"){
+							color = "bg-darkCyan"
+						} else {
+							color = "bg-dark"
+						}
+						projectTileInfo.color = color;
+						createCard(projectTileInfo);
+					});
+				},
+				error: function(error) {
+	        		// error is an instance of Parse.Error.
+	    		}
+			})
+		}
+
+		function allTiles() {
+			$("#tiles").html("");
+			var Project = Parse.Object.extend("Project");
+			var query = new Parse.Query(Project);
+			findDraw(query);
+		}
+
+		function redrawTiles(filter) {
+			$("#tiles").html("");
+			var Project = Parse.Object.extend("Project");
+			var query = new Parse.Query(Project);
+			query.equalTo("type", filter);
+			findDraw(query);
+		}
+
+		function drawAboutMe() {
+			$("#tiles").html("");
+			var template = $("#aboutMe").html();
+			var us_template = _.template(template);
+			var createAboutMe = function(a) {$("#tiles").append(us_template(a))};
+			createAboutMe();
+			console.log("done");
+		}
+	</script>
+</body>
+</html>
