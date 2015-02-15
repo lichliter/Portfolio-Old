@@ -1,8 +1,31 @@
-#tileContainer {
-	margin-top: 100px;
-	margin-bottom: 100px;
+#navigation {
+	position: fixed;
+	z-index: 10;
 }
-
-body {
-	background-color: rgb(245,245,245);
+.nav-wrapper {
+	margin: 0px 2% 0px 2%;
+}
+#header, #about, #portfolio, #contact{
+	width: 100%;
+	min-height: 100%;
+	padding-bottom: 10px;
+}
+#name {
+	color: white;
+	font-size: 10em;
+	font-weight: 200;
+}
+.degree {
+	font-weight: 400;
+	font-size: 1.5em;
+}
+#aboutHeader, #portfolioHeader{
+	font-weight: 400;
+	font-size: 4em;
+	margin: 0px;
+}
+#Iama {
+	font-size: 8em;
+	font-weight: 200;
+	margin: 0px;
 }
