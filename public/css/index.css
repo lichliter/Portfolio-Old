@@ -1,31 +1,85 @@
 #navigation {
 	position: fixed;
-	z-index: 10;
+	z-index: 2000;
+	font-weight: 300;
 }
 .nav-wrapper {
 	margin: 0px 2% 0px 2%;
 }
-#header, #about, #portfolio, #contact{
+#header, #portfolio, #contact{
 	width: 100%;
 	min-height: 100%;
 	padding-bottom: 10px;
 }
+#about {
+	width: 100%;
+	padding-bottom: 10px;
+}
+#headerPicture {
+	min-width: auto;
+	opacity: 0.3;
+	margin-top: -150px;
+}
+#overlay {
+	width: 100%;
+	position: absolute;
+	max-height: 100%;
+	z-index: 0;
+	background-color: black;
+	overflow: hidden;
+}
 #name {
-	color: white;
-	font-size: 10em;
+	font-size: 7rem;
 	font-weight: 200;
+}
+#nameBox {
+    padding: 25px;
+    border: 4px solid white;
+    margin: 25px;
+    z-index: 5;
 }
 .degree {
 	font-weight: 400;
-	font-size: 1.5em;
+	font-size: 1.5rem;
 }
 #aboutHeader, #portfolioHeader{
 	font-weight: 400;
-	font-size: 4em;
+	font-size: 4rem;
 	margin: 0px;
 }
 #Iama {
-	font-size: 8em;
+	font-size: 6.5rem;
 	font-weight: 200;
 	margin: 0px;
+}
+.modal {
+	max-height: 85%;
+	z-index: 3000;
+}
+.cardTitle {
+	font-weight: 300;
+	font-size: 2rem;
+}
+.progress {
+	min-height: 10px;
+	border-radius: 5px;
+}
+.card-title {
+	width: 100%;
+}
+.card-image {
+	height: 100% !important;
+	z-index: 0;
+}
+#email {
+	font-size: 200%;
+	font-weight: 200;
+}
+#iconRow {
+	font-size: 5rem;
+	margin-bottom: 0px;
+}
+#iconLabelRow {
+	font-size: 2rem;
+	font-weight: 300;
 }

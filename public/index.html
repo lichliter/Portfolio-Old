@@ -1,15 +1,17 @@
 <html lang="en">
 <head>
   	<link href="css/materialize.min.css" type="text/css" rel="stylesheet"/>
+  	<link href="css/font-awesome.min.css" type="text/css" rel="stylesheet"/>
   	<link href="css/index.css" type="text/css" rel="stylesheet"/>
 
-	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.2.min.js"></script>
 	<script src="js/materialize.js"></script>
+	<script src="js/underscore-min.js"></script>
 	<script src="js/index.js"></script>
 </head>
 <body>	
-	<nav id = "navigation" class = "teal lighten-2">
+	<nav id = "navigation" class = "teal lighten-1">
 	    <div class="nav-wrapper">
 	      	<a href="#header" class="brand-logo">Brian Lichliter</a>
 	      	<ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -19,8 +21,13 @@
 	      	</ul>
 	    </div>
 	</nav>
-	<div id = "header" class = "teal valign-wrapper">
-		<h1 id = "name" class = "valign center-align">Brian Lichliter</h1>
+	<div id = "overlay">
+		<img id = "headerPicture" src="https://farm8.staticflickr.com/7340/9036889381_e6b35a7724_k.jpg"/>
+	</div>
+	<div id = "header" class = "grey lighten-3  valign-wrapper">
+		<div id = "nameBox">
+			<h1 id = "name" class = "white-text valign center-align">BRIAN LICHLITER</h1>
+		</div>
 	</div>
 	<div id = "about" class = "grey lighten-3">
 		<br>
@@ -34,27 +41,31 @@
 					<h2>Interests</h2>
 					<div class = "row valign-wrapper">
 						<div class = "col s4 valign center-align">
-							<i class = "orange-text text-accent-3 mdi-action-dashboard large"></i>
-							<br>
+							<i class = "orange-text text-accent-3 mdi-av-web large"></i>
+						</div>
+						<div class = "col s4 valign center-align">
+							<i class = "orange-text text-accent-3 mdi-hardware-phone-iphone large"></i>
+						</div>
+						<div class = "col s4 valign center-align">
+							<i class = "orange-text text-accent-3 mdi-content-select-all large"></i>
+						</div>
+					</div>
+					<div class = "row valign-wrapper">
+						<div class = "col s4 valign center-align">
 							<p class = "degree">
 								UI/UX
 							</p>
 						</div>
 						<div class = "col s4 valign center-align">
-							<i class = "orange-text text-accent-3 mdi-hardware-phone-iphone large"></i>
-							<br>
 							<p class = "degree">
 								Mobile Technology
 							</p>
 						</div>
 						<div class = "col s4 valign center-align">
-							<i class = "orange-text text-accent-3 mdi-content-select-all large"></i>
-							<br>
 							<p class = "degree">
 								Embedded Systems
 							</p>
 						</div>
-
 					</div>
 				</div>
 				<div class = "col s12">
@@ -95,70 +106,259 @@
 					<div class = "row valign-wrapper">
 						<div class = "col s6 valign center-align">
 							<h2 class = "orange-text text-accent-3">EDI</h2>
-							<br>
+						</div>
+						<div class = "col s6 valign center-align">
+							<i class = "orange-text text-accent-3 mdi-hardware-desktop-mac large"></i>
+						</div>
+					</div>
+					<div class = "row valign-wrapper">
+						<div class = "col s6 valign center-align">
 							<p class = "degree">M.S. Engineering Design & Innovation</p>
 							<p>Northwestern University, Evanston, IL</p>
 						</div>
 						<div class = "col s6 valign center-align">
-							<i class = "orange-text text-accent-3 mdi-hardware-desktop-mac large"></i>
-							<br>
 							<p class = "degree">B.S. Computer Engineering</p>
 							<p>Northwestern University, Evanston, IL</p>
 						</div>
 					</div>
 				</div>
+				<div class = "center col s12">
+					<a class="btn-large white orange-text text-accent-3 waves-effect waves-light btn" href = "https://www.dropbox.com/s/ix5xura97c2lsct/Website.Resume.pdf?dl=0" target = "_blank"><i class="mdi-file-file-download left"></i>Download Resume</a>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div id = "portfolio" class = "teal">
+	<div id = "portfolio" class = "teal darken-1">
 		<br>
-		<div class = "container white z-depth-1">
-			<p id = "portfolioHeader" class = "center-align">Portfolio</p>
+		<div class = "row">
+			<div class = "col s10 offset-s1">
+			<div class = "row valign-wrapper">
+				<div class = "col s7 m8 l10">
+					<p id = "iama" class = "left-align white-text">I am <span id  = "role">____</span>.</p>
+				</div>
+				<div class = "col s5 m4 l2">
+					<!-- Dropdown Trigger -->
+				  <a class='dropdown-button btn valign white orange-text text-accent-3' href='#' data-activates='dropdown1'><i class="mdi-navigation-expand-more right"></i>Roles</a>
+
+				  <!-- Dropdown Structure -->
+				  <ul id='dropdown1' class='dropdown-content'>
+					<li><a href="#!" class = "orange-text text-accent-3" onclick="allTiles()">All</a></li>
+					<li><a href="#!" class = "orange-text text-accent-3" onclick="redrawTiles('intern')">Internship</a></li>
+					<li><a href="#!" class = "orange-text text-accent-3" onclick="redrawTiles('development')">Development</a></li>
+					<li><a href="#!" class = "orange-text text-accent-3" onclick="redrawTiles('product')">Product Design</a></li>
+					<li><a href="#!" class = "orange-text text-accent-3" onclick="redrawTiles('graphic')">Graphic Design</a></li>
+					<li><a href="#!" class = "orange-text text-accent-3" onclick="redrawTiles('research')">Design Research</a></li>
+				  </ul>
+				 </div>
+			</div>
+			</div>
 		</div>
-		<br>
-<!-- 		<div class = "container">
-			<div class="row">
-	        	<div class="col s4">
-	          		<div class="card">
-	            		<div class="card-content">
-	              			<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-	              			<br>
-	              			<div class = "row center">
-								<a class="purple-text text-darken-1 white waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-							</div>
-	          			</div>
-	          		</div>
-	        	</div>
-	      	</div>
-	    </div> -->
+		<div class = "row">
+			<div class = "col s10 offset-s1">
+				<div id = "tiles" class = "row"></div>
+			</div>
+		</div>
 	</div>
-	<div id = "contact" class = "grey lighten-3">
+	<div id = "contact" class = "grey lighten-3 valign-wrapper">
+		<div class = "container white valign z-depth-1">
+			<div id = "iconRow" class = "row valign-wrapper">
+				<div class = "col s3 valign center-align">
+					<a href = "mailto:brian.lichliter@u.northwestern.edu">
+						<i class="orange-text text-accent-3 mdi-communication-email"></i>
+					</a>
+				</div>
+				<div class = "col s3 valign center-align">
+					<a target = "_blank" href = "https://github.com/BrianLichliter">
+						<i class="orange-text text-accent-3 fa fa-github-square"></i>
+					</a>
+				</div>
+				<div class = "col s3 valign center-align">
+					<a target = "_blank" href = "http://b-lichliter.tumblr.com/">
+						<i class="orange-text text-accent-3 fa fa-tumblr-square"></i>
+					</a>
+				</div>
+				<div class = "col s3 valign center-align">
+					<a target = "_blank" href = "https://www.flickr.com/photos/93060454@N02/">	
+						<i class="orange-text text-accent-3 fa fa-flickr"></i>
+					</a>
+				</div>
+			</div>
+			<div id = "iconLabelRow" class = "row valign-wrapper">
+				<div class = "col s3 valign center-align">
+					<a class = "black-text" href = "mailto:brian.lichliter@u.northwestern.edu">E-Mail</a>
+				</div>
+				<div class = "col s3 valign center-align">
+					<a target = "_blank" class = "black-text" href = "https://github.com/BrianLichliter">Github</a>
+				</div>
+				<div class = "col s3 valign center-align">
+					<a target = "_blank" class = "black-text" href = "http://b-lichliter.tumblr.com/">Tumblr</a>
+				</div>
+				<div class = "col s3 valign center-align">
+					<a target = "_blank" class = "black-text" href = "https://www.flickr.com/photos/93060454@N02/">Flickr</a>
+				</div>
+			</div>
+		</div>
 	</div>
-	<!-- Modal Structure -->
-  	<div id="modal1" class="modal">
-    	<div class="modal-content">
-      		<h4>Modal Header</h4>
-      		<p>A bunch of text</p>
-    	</div>
-    	<div class="modal-footer">
-      		<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Agree</a>
-    	</div>
-  	</div>
-	<script>
+	<script type="foo/bar" id="projectTile">
+		<div class = "col l4 m6 s12">
+			<a id = "<%=title.replace(/[\s.]+/g, '')%>Card" href="#<%=title.replace(/[\s.]+/g, '')%>">		
+				<div class="card small">
+					<div class="card-image waves-effect waves-block waves-light">
+						<img class = "responsive-img" src="<%=image%>"/>
+						<span class="card-title black"><%=title%></span>
+					</div>
+				</div>
+			</a>
+		</div>
+ 
+		<!-- Modal Structure -->
+	  	<div id="<%=title.replace(/[\s.]+/g, '')%>" class="modal white">
+	    	<div class="modal-content">
+				<div class = "row center">
+					<h2><%=title%></h2>
+				</div>
+	      		<div class = "row">
+	      			<div class = "col s5">
+	      				<img class = "responsive-img" src="<%=image%>">
+	      				<br><br>
+	      				<center>
+	      					<a target = "_blank" class = "orange-text text-accent-3 white waves-effect waves-light btn" href="<%=link%>">
+	      						<%=linkText%>
+	      					</a>
+	      				</center>
+	      			</div>
+	      			<div class = "col s7">
+	      				<%=description%>
+	      			</div>
+	      		</div>
+	    	</div>
+			<li class="divider"></li>
+	    	<div class="white modal-footer">
+				<br>
+				<%if (imageFull) {%>
+				<h2 class = "center-align"><%=captionFull%></h2>
+				<br>
+				<div class = "col s10 offset-s1">
+					<img class = "center responsive-img" src="<%=imageFull%>">
+					<br><br><br><br>
+				<%}%>
+				</div>
+	    	</div>
+	  	</div>
+		
+	</script>
+	<script type="text/javascript">
 		$(document).ready(function(){
-	    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-	    	$('.modal-trigger').leanModal();
-	    	$('.dropdown-button').dropdown({
-			    inDuration: 300,
-			    outDuration: 225,
-			    constrain_width: false, // Does not change width of dropdown to that of the activator
-			    hover: false, // Activate on click
-			    alignment: 'left', // Aligns dropdown to left or right edge (works with constrain_width)
-			    gutter: 0, // Spacing from edge
-			    belowOrigin: false // Displays dropdown below the button
-		    }
-			);
+		$('.dropdown-button').dropdown({
+			inDuration: 300,
+			outDuration: 225,
+			constrain_width: false, // Does not change width of dropdown to that of the activator
+			hover: true, // Activate on click
+			alignment: 'left', // Aligns dropdown to left or right edge (works with constrain_width)
+			gutter: 0, // Spacing from edge
+			belowOrigin: false // Displays dropdown below the button
+		});
+
 	  	});
+	</script>
+	<script type="text/javascript">
+		Parse.initialize("CowQmjHrJtzCVWm7k9mBkZO6L1uGzGwgC6cahQfJ", 
+			"AJFR1w2yMyy0c1rSUIXXrB4PAPn5nvrp7m5KF3WO");
+		var template = $("#projectTile").html();
+		var us_template = _.template(template);
+		var createCard = function(a) {
+									$("#tiles").append(us_template(a));
+									// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+									var id = a.title.replace(/[\s.]+/g, '');
+									$("#" + id + "Card").leanModal();
+								};
+		allTiles();
+
+		function findDraw (query) {
+			var colCounter = 0;
+			query.descending("date");
+			query.find({
+				success: function(results) {
+					results.forEach(function(result){
+						var projectTileInfo = result.attributes;
+						var projectImage = result.get("image");
+						var image = projectImage.url();
+						projectTileInfo.image = image;
+						
+						colCounter++;
+						projectTileInfo.colCounter = colCounter;
+						if (colCounter == 3) {
+							colCounter = 0;
+						}
+
+						var projectImageFull = result.get("imageFull");
+						if (projectImageFull) {
+							var imageFull = projectImageFull.url();
+							projectTileInfo.imageFull = imageFull;
+						} else {
+							projectTileInfo.imageFull = 0;
+						}
+						var color;
+						if (projectTileInfo.type == "development") {
+							color = "bg-dark"
+						} else if (projectTileInfo.type == "graphic") {
+							color = "bg-darkgreen"
+						} else if (projectTileInfo.type == "product") {
+							color = "bg-darkcobalt"
+						} else if (projectTileInfo.type == "research") {
+							color = "bg-darkmagenta"
+						} else if (projectTileInfo.type == "intern"){
+							color = "bg-darkCyan"
+						} else {
+							color = "bg-dark"
+						}
+						projectTileInfo.color = color;
+						createCard(projectTileInfo);
+					});
+				},
+				error: function(error) {
+	        		// error is an instance of Parse.Error.
+	    		}
+			})
+		}
+
+		function allTiles() {
+			$("#role").text("versatile");
+			$("#tiles").html("");
+			var Project = Parse.Object.extend("Project");
+			var query = new Parse.Query(Project);
+			findDraw(query);
+		}
+
+		function redrawTiles(filter) {
+			if (filter == "development") {
+				$("#role").text("a hacker");
+			} else if (filter == "graphic") {
+				$("#role").text("an artist");
+			} else if (filter ==  "product") {
+				$("#role").text("a designer");
+			} else if (filter ==  "research") {
+				$("#role").text("a researcher");
+			} else if (filter ==  "intern"){
+				$("#role").text("a professional");
+			} else {
+				$("#role").text("a ____");
+			}
+			$("#tiles").html("");
+			var Project = Parse.Object.extend("Project");
+			var query = new Parse.Query(Project);
+			query.equalTo("type", filter);
+			findDraw(query);
+		}
+
+		function drawAboutMe() {
+			$("#tiles").html("");
+			var template = $("#aboutMe").html();
+			var us_template = _.template(template);
+			var createAboutMe = function(a) {$("#tiles").append(us_template(a))};
+			createAboutMe();
+			console.log("done");
+		}
 	</script>
 </body>
 </html>
